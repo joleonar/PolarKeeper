@@ -1,0 +1,39 @@
+﻿@model ExerciseViewModel
+           
+@{
+    var ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST", 
+        UpdateTargetId = "Exercise" + Model.Id, 
+        InsertionMode = InsertionMode.Replace, 
+        OnSuccess = "updateSuccess"+Model.Id
+    };
+}
+
+<div id="Exercise@(Model.Id)">
+    @{
+        Html.RenderPartial("ExerciseDetail",Model);
+    }
+</div>
+<div id="Form@(Model.Id)">
+    @using (Ajax.BeginForm("UploadToRunkeeper", ajaxOptions))
+    {
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.time)
+        @Html.HiddenFor(m => m.sport)
+        @Html.HiddenFor(m => m.duration)
+        @Html.HiddenFor(m => m.distance)
+        @Html.HiddenFor(m => m.calories)
+        @Html.HiddenFor(m => m.heartRateAvg)
+        @Html.HiddenFor(m => m.heartRateMax)
+        @Html.HiddenFor(m => m.heartRateRest)
+        <button type="submit" class="btn btn-info"><i class="fa fa-upload"></i> Upload to Runkeeper!</button>
+    }
+</div>
+
+<script>
+    function updateSuccess@(Model.Id)() {
+        alertify.success("Succesvol geüpload naar Runkeeper!");
+        $("#Form@(Model.Id)").hide();
+    }
+</script>

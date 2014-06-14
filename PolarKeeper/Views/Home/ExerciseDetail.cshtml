@@ -1,0 +1,12 @@
+﻿@model ExerciseViewModel
+
+<h2>@Model.sport @Html.Raw("@") @Model.time.ToShortDateString()</h2>
+<hr />
+<p>
+    Distance: @(Model.distance / 1000) @Html.Raw("km")<br />
+    Duration: @Model.duration<br />
+    Average heartRate: @Model.heartRateAvg<br />
+    Maximum heartRate: @Model.heartRateMax<br />
+    Calories: @Model.calories kCal<br />
+    Uploaded: @(Model.Uploaded? "Yes!" : "No")
+</p>

@@ -1,0 +1,11 @@
+﻿@model List<ExerciseViewModel>
+
+@{
+    ViewBag.Title = "Exercises";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@foreach (var exercise in Model)
+{
+    @Html.Partial("Exercise",exercise)
+} 
